@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// --- Icon Components ---
 const SearchIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-gray-400"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>;
 const BellIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-gray-400"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>;
 const CheckCircleIcon = ({ completed }) => {
@@ -35,7 +34,6 @@ const ChevronRightIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24
 const MenuIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-white"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>;
 const CloseIcon = () => <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-white"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>;
 
-// --- New Intro Animation Component ---
 const IntroAnimation = ({ onAnimationComplete }) => {
   const textToType = "PROJEX";
   const [typedText, setTypedText] = useState('');
@@ -47,7 +45,6 @@ const IntroAnimation = ({ onAnimationComplete }) => {
       }, 150);
       return () => clearTimeout(timeoutId);
     } else {
-      // Wait a bit after typing finishes, then complete
       const timeoutId = setTimeout(() => {
         onAnimationComplete();
       }, 700);
@@ -70,7 +67,6 @@ const IntroAnimation = ({ onAnimationComplete }) => {
 };
 
 
-// --- Reusable Components ---
 const Sidebar = ({ isMobile, onClose }) => {
   const NavLinks = () => (
     <nav className="flex flex-col space-y-2">
@@ -392,18 +388,17 @@ const MySchedule = ({ projects }) => {
 };
 
 
-// --- Main App Component ---
 export default function App() {
-  // Data state
+
   const [projects, setProjects] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Intro state
+
   const [showIntro, setShowIntro] = useState(true);
 
-  // UI State
+
   const [view, setView] = useState('dashboard'); // 'dashboard' or 'projectDetail'
   const [selectedProject, setSelectedProject] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -411,13 +406,13 @@ export default function App() {
   const [taskFilter, setTaskFilter] = useState('all');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Modal State
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState('add');
   const [modalType, setModalType] = useState('project');
   const [currentItem, setCurrentItem] = useState(null);
 
-  // Form state
+
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [techStack, setTechStack] = useState('');
@@ -538,7 +533,7 @@ export default function App() {
         if (!b.deadline) return -1;
         return new Date(a.deadline) - new Date(b.deadline);
       }
-      return 0; // default order
+      return 0; 
     });
 
     const searchedTasks = tasks.filter(task =>
